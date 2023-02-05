@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -21,12 +21,14 @@ const BoxSizeType = {
     }
 }
 
-type BoxTypes = {
+type BoxAtomProps = {
     boxType: "big"| "middle" | "small",
-};
+    children: React.ReactNode
+}
+
 
 const BoxAtom = (
-    {boxType}: BoxTypes,
+    {boxType, children}: BoxAtomProps,
 ) => {
   return (
     <Wrapper
@@ -35,6 +37,7 @@ const BoxAtom = (
             height: BoxSizeType[boxType].height,
         }}
     >
+        {children}
     </Wrapper>
   )
 }

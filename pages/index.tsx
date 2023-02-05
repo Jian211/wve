@@ -3,6 +3,7 @@ import { gql, useQuery } from '@apollo/client'
 import styled from 'styled-components';
 import MyInfoWrap from '@/components/blocks/MyInfoWrap';
 import WeatherBlock from '@/components/blocks/WeatherBlock';
+import ExchangeRateBlock from '@/components/blocks/ExchangeRateBlock';
 
 
 
@@ -33,6 +34,7 @@ export default function Home() {
   const { data, loading, error } = useQuery(AllLinksQuery);
   if(loading) return <p>Loading...</p>
   if(error) return <p>oh no... {error.message}</p>
+
   return (
     <>
       <Head>
@@ -47,7 +49,7 @@ export default function Home() {
 
         <WrapperTwo>
           <WeatherBlock />
-          {/* <WeatherBlock /> */}
+          <ExchangeRateBlock />
         </WrapperTwo>
       
     </>
