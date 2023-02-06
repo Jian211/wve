@@ -10,11 +10,11 @@ import { Nav } from '@/components/templates/Nav'
 
 
 const Wrapper = styled.div`
-    width: 1300px;
+    width: 1410px;
     display : flex;
     margin: var(--margin-side);
 
-    @media screen and ( max-width: 1360px){
+    /* @media screen and ( max-width: 1360px){
       width: 720px;
 
       div:nth-child(2) {
@@ -28,7 +28,7 @@ const Wrapper = styled.div`
       div:nth-child(2) {
         background-color:blue;
       }
-    }
+    } */
 `;
 
 export default function App({ Component, pageProps }: AppProps) {

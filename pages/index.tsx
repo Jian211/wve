@@ -4,18 +4,68 @@ import styled from 'styled-components';
 import MyInfoWrap from '@/components/blocks/MyInfoWrap';
 import WeatherBlock from '@/components/blocks/WeatherBlock';
 import ExchangeRateBlock from '@/components/blocks/ExchangeRateBlock';
+import BoxAtom from '@/components/atoms/BoxAtom';
+import { PopularPostBlock } from '@/components/blocks/PopularPostBlock';
 
 
+const Wrapper = styled.div`
+  width: 100vw;
+  display: flex;
 
 
-const WrapperOne = styled.div`
-    margin-right: 40px;
+  & > section > div {
+
+    @media screen and (max-width: 767px) {
+      background-color: black;
+    }
+
+    background-color: pink;
+    margin: 18px;
+  }
+
+  @media screen and (max-width: 1200px){
+    background-color: yellowgreen;
+    width: min-content;
+    flex-wrap: wrap;
+  }
+  
+  @media screen and (max-width: 767px){
+    background-color: yellowgreen;
+    flex-wrap: wrap;
+  }
 `;
 
-const WrapperTwo = styled.div`
-   display: flex;
-   width: 674px;
-   justify-content: space-between;
+const WrapperOne = styled.section`
+  flex: 1;
+  @media screen and (max-width: 1600px) {
+    flex: none;
+  }
+    /* margin-right: 40px; */
+`;
+
+const WrapperTwo = styled.section`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  width: min-content;
+  height: 1000px;
+  
+  @media screen and (max-width: 1600px) {
+    background-color: yellow;
+    align-items: flex-start;
+    height: fit-content;
+    flex: none;
+  }
+  
+  @media screen and (max-width: 1200px){
+    height: 1000px;
+    flex: 1;
+  }
+  
+  
 `;
 
 const AllLinksQuery = gql`
@@ -43,14 +93,24 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       
+      <Wrapper>
         <WrapperOne>
+          <PopularPostBlock />
           <MyInfoWrap />
         </WrapperOne>
 
         <WrapperTwo>
           <WeatherBlock />
           <ExchangeRateBlock />
+          <BoxAtom boxType='middle'>
+            <h1>gdgd</h1>
+          </BoxAtom>
+          <ExchangeRateBlock />
+          <ExchangeRateBlock />
+          <ExchangeRateBlock />
+          <ExchangeRateBlock />
         </WrapperTwo>
+      </Wrapper>
       
     </>
   )
