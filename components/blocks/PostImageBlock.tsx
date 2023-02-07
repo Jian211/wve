@@ -44,11 +44,12 @@ const PostImageBlock = () => {
     
     // props
     // => 사진[]
-
   
     return (
         <Wrapper>
-            <SliderBlock image='자 여기요'/>
+            <SliderBlock >
+                <h1>안녕하세요</h1>
+            </SliderBlock>
 
             <section>
                 <div>1/5</div>

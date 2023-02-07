@@ -23,9 +23,9 @@ const Wrapper = styled.div`
 `;
 
 const navPageLinks = [
-    { href: "/posts", label: "posts" },
-    { href: "/jobs", label: "jobs" },
-    { href: "/video", label: "video" },
+    { href: "/service", label: "서비스" },
+    { href: "/jobs", label: "비즈니스" },
+    { href: "/voice", label: "보이스룸" },
 ]
 
 const LogoArea = () => {

@@ -4,26 +4,27 @@ import styled from 'styled-components'
 
 
 const Wrapper = styled(motion.section)`
-    width: 50%;
     
-    div{
-        background-color: tomato;
-    }
 `;
 
 interface ISliderProps {
-    image: string
+    children: React.ReactNode
 }
 
-export const SliderBlock = ({image}:ISliderProps) => {
-  return (
-    <Wrapper
-        initial={{x:0}}
-        animate={{x:100}}
-    >
-        <div>
-            {image}
-        </div>
-    </Wrapper>
-  )
+
+const animate = {
+    
+}
+
+export const SliderBlock = ({children}:ISliderProps) => {
+
+    return (
+        <Wrapper
+            initial={{x:0}}
+            animate={{x:100}}
+            exit={{x:-100}}
+        >
+            {children}
+        </Wrapper>
+    )
 }

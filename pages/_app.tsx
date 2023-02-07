@@ -7,28 +7,14 @@ import styled,{ ThemeProvider } from 'styled-components'
 import {theme} from '../styles/theme'
 import {GlobalStyle} from '../styles/global-style'
 import { Nav } from '@/components/templates/Nav'
+import { TitleHeaderWrap } from '@/components/templates/TitleHeaderWrap'
 
 
 const Wrapper = styled.div`
     width: 1410px;
+    height: 100vh;
     display : flex;
     margin: var(--margin-side);
-
-    /* @media screen and ( max-width: 1360px){
-      width: 720px;
-
-      div:nth-child(2) {
-        flex-direction: column;
-        background-color: skyblue;
-      }
-    }
-    @media screen and ( max-width: 1022px){
-      width: 402px;
-      flex-direction: column;
-      div:nth-child(2) {
-        background-color:blue;
-      }
-    } */
 `;
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -37,6 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <GlobalStyle />
       <ApolloProvider client={apolloClient}>
           <Nav />
+          <TitleHeaderWrap />
           <Wrapper>
             <Component {...pageProps} />
           </Wrapper>
