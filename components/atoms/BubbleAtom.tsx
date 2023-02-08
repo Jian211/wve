@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import styled from 'styled-components';
 
 
@@ -16,27 +15,27 @@ const Wrapper = styled.li`
     background-color: black;
     color: white;
   }
-
 `;
 
 interface IBubbleAtom {
-    index: number,
     category: {
-        [key: string]:string
+        url: string,
+        language: {
+          [key : string]: string
+        }
     }
 }
 
-export const BubbleAtom = ({index, category}: IBubbleAtom) => {
-    const [selected, setSelected] = useState(0);
-    
-    console.log(selected)
-  
+export const BubbleAtom = ({category}: IBubbleAtom) => {
+
+    // 현재의 url의 상태에 따라서 색이 변한다.!!! 이거다
+
     return (
-    <Wrapper 
-        key={index}
-        
-    >
-        {category["kr"]}
-    </Wrapper>
+      <Wrapper
+        // style={{category.url === route}}
+        onClick={()=>{console.log("hello", category.url)}}
+      >
+        {category.language["kr"]}
+      </Wrapper>
   )
 }
