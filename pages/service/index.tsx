@@ -1,5 +1,5 @@
 import { Category } from '@/components/blocks/Category';
-import { gql } from '@apollo/client';
+import { gql, useQuery } from '@apollo/client';
 import React, { useState } from 'react'
 import styled from 'styled-components'
 
@@ -13,7 +13,7 @@ const Wrapper = styled.section`
 
 const test = gql`
   query{
-    getCtg @client
+    getBooks
   }
 `;
 
@@ -21,8 +21,9 @@ const test = gql`
 export default function Index() {
 
   const [ctg, setCtg] = useState("");
-  const sss = test;
-  console.log(sss)
+
+  const result = useQuery(test);
+
   return (
     <Wrapper>
       <Category

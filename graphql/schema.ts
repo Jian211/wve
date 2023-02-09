@@ -1,16 +1,14 @@
-// graphql/schema.ts
-import { makeSchema } from 'nexus'
-import { join } from 'path'
-import * as types from './types/index'
+import { gql } from "apollo-server-micro";
 
-export const schema = makeSchema({
-  types,
-  outputs: {
-    typegen: join(process.cwd(), 'node_modules', '@types', 'nexus-typegen', 'index.d.ts'),
-    schema: join(process.cwd(), 'graphql', 'schema.graphql'),
-  },
-  contextType: {
-    export: 'Context',
-    module: join(process.cwd(), 'graphql', 'context.ts'),
-  },
-})
+
+export const typeDefs = gql`
+    type Book {
+        name: String,
+        title: String
+    }
+
+    type Query {
+        books: [Book]
+    }
+`;
+

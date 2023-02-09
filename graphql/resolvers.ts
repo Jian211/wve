@@ -1,7 +1,10 @@
-import {LinksQuery} from './types'
 
 export const resolvers = {
-    Query: {
-      links:LinksQuery,
-    },
-  }
+  Query: {
+    getBooks:() => {
+      return [
+        { name: "성공", title:"입니다"},
+      ]
+    }
+  },
+}
