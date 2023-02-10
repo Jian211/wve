@@ -1,4 +1,4 @@
-import { getExchangeRate,IExchangeRate } from '@/pages/api/exchangeRatesAPI';
+import { IExchangeRate } from '@/pages/api/exchangeRatesAPI';
 import { useEffect, useState } from 'react';
 import BoxAtom from '../atoms/BoxAtom'
 
@@ -47,12 +47,3 @@ export default function ExchangeRateBlock() {
   )
 }
 
-// export const getServerSideProps:GetServerSideProps = async () => {
-//   const {date,query,result} = await getExchangeRate();
-
-//   return {
-//     props:{
-//       date,query,result
-//     }
-//   }
-// }

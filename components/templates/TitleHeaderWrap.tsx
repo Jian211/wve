@@ -46,15 +46,12 @@ interface ILinks {
 }
 
 export function TitleHeaderWrap (){
-
     const router = useRouter();
     let root = router.asPath.split("/")[1];
-
     return (
         <Wrapper>
             <h3>{links[root].title}</h3>
             <h3>{links[root].label}</h3>
         </Wrapper>
-
     )
 }

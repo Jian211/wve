@@ -1,4 +1,4 @@
-import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
 
 
 /**
@@ -10,19 +10,4 @@ const apolloClient = new ApolloClient({
     cache: new InMemoryCache(),
 }) 
 
-
-apolloClient
-    .query({
-        query: gql`
-            query getBooks {
-                name
-                title
-            }
-        `,
-    })
-    .then(result => {
-        console.log(result)
-        return result;
-    })
-    
 export default apolloClient

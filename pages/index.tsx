@@ -68,22 +68,8 @@ const WrapperTwo = styled.section`
   
 `;
 
-const AllLinksQuery = gql`
-  query{
-    links{
-      id
-      title
-      url
-      description
-      imageUrl
-      category
-    }
-  }
-`;
+
 export default function Home() {
-  const { data, loading, error } = useQuery(AllLinksQuery);
-  if(loading) return <p>Loading...</p>
-  if(error) return <p>oh no... {error.message}</p>
 
   return (
     <>
