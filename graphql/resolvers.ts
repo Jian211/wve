@@ -12,10 +12,5 @@ export const resolvers = {
       const result = await getExchangeRateAPI();
       return result;
     },
-    getWeatherInfo: async (req,res) => {
-      console.log(req)
-      // const result = await getWeatherInfo();
-      return "hello"
-    }
   },
 }

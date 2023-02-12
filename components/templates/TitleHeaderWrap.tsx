@@ -50,8 +50,9 @@ export function TitleHeaderWrap (){
     let root = router.asPath.split("/")[1];
     return (
         <Wrapper>
-            <h3>{links[root].title}</h3>
-            <h3>{links[root].label}</h3>
+            <h1>테스트중 수정할 것</h1>
+            {/* <h3>{links[root].title}</h3> */}
+            {/* <h3>{links[root].label}</h3> */}
         </Wrapper>
     )
 }

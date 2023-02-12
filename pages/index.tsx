@@ -1,11 +1,12 @@
 import Head from 'next/head'
-import { gql, useQuery } from '@apollo/client'
 import styled from 'styled-components';
 import MyInfoWrap from '@/components/blocks/MyInfoWrap';
 import WeatherBlock from '@/components/blocks/WeatherBlock';
 import ExchangeRateBlock from '@/components/blocks/ExchangeRateBlock';
 import BoxAtom from '@/components/atoms/BoxAtom';
 import { PopularPostBlock } from '@/components/blocks/PopularPostBlock';
+import { gql, useQuery } from '@apollo/client';
+import { IExchangeRate } from './api/exchangeRatesAPI';
 
 
 const Wrapper = styled.div`
@@ -68,8 +69,8 @@ const WrapperTwo = styled.section`
   
 `;
 
-
 export default function Home() {
+
 
   return (
     <>
@@ -90,10 +91,6 @@ export default function Home() {
           <BoxAtom boxType='middle'>
             <h1>gdgd</h1>
           </BoxAtom>
-          <ExchangeRateBlock />
-          <ExchangeRateBlock />
-          <ExchangeRateBlock />
-          <ExchangeRateBlock />
         </WrapperTwo>
       </Wrapper>
       

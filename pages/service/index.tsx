@@ -13,20 +13,11 @@ const Wrapper = styled.section`
 `;
 
 
-const test = gql`
-  query{
-    getExchangeRate {
-      result
-    }
-  }
-`;
 
 
 export default function Index() {
   const [ctg, setCtg] = useState("");
 
-  const {data,loading,error } = useQuery(test);
-  console.log("됩니까?",data)
  
 
   return (
