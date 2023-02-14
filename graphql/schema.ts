@@ -8,6 +8,8 @@ export const typeDefs = gql`
       name: String
       title: String
   }
+
+  # ExchangeRate Schema
   type Info {
     timestamp: Float
     rate: Float
@@ -27,11 +29,15 @@ export const typeDefs = gql`
     query: Query
   }
 
-  
+  #WeatherAPI Schema
+  type WeatherInfo {
+    base: String
+  }
+
   type Query {
     getExchangeRate: ExchangeRate
     getBooks: [Book]
-    #  getWeatherInfo: WeatherInfo
+    getWeatherInfo: WeatherInfo
   }
 `;
   
