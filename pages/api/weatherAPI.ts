@@ -1,5 +1,5 @@
 
-export type coord = {
+export type Coord = {
     latitude: number
     longitude: number,
 }
@@ -10,7 +10,7 @@ export interface IWeatherObj {
       all : number 
     },
     cod: number,
-    coord: coord,
+    coord: Coord,
     dt:number,
     id:number,
     main:{
@@ -42,6 +42,6 @@ export interface IWeatherObj {
     }
 }
 
-export const getWeatherInfo = ({latitude, longitude}:coord):Promise<IWeatherObj> => {
+export const getWeatherInfo = ({latitude, longitude}:Coord):Promise<IWeatherObj> => {
     return fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=5a5e5dc879b0fbacdaf831fae3d75afa&units=metric`).then(res => res.json()) ;
 }

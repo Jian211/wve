@@ -2,7 +2,7 @@ import React, {  useEffect, useState } from 'react'
 import styled from 'styled-components'
 import ImageAtom from '../atoms/ImageAtom';
 import cloud from '../../public/images/weathers/cloud.png'
-import { coord, getWeatherInfo, IWeatherObj } from '@/pages/api/weatherAPI';
+import { Coord, getWeatherInfo, IWeatherObj } from '@/pages/api/weatherAPI';
 import BoxAtom from '../atoms/BoxAtom';
 import { useQuery,gql } from '@apollo/client';
 
@@ -15,32 +15,64 @@ const Wrapper = styled.div`
     }
 `;
 
-const tokyoCoord = {
+const tokyoCoord:Coord = {
   latitude: 35.652832,
   longitude: 139.839478 
 }
 
 const weatherQuery = gql`
-  query getWeatherInfo($latitude: String!, $longitude: String!) {
-    getWeatherInfo(latitude: $latitude, longitude: $longitude) {
+  query WeatherData($coord: ICoord) {
+    getWeatherInfo(coord: $coord) {
+      weather {
+        id
+        main
+        description
+        icon
+      }
       base
+      main {
+        temp
+        feels_like
+        temp_min
+        temp_max
+        pressure
+        humidity
+      }
+      visibility
+      wind {
+        speed
+        deg
+      }
+      dt
+      clouds {
+        all
+      }
+      sys {
+        type
+        id
+        country
+        sunrise
+        sunset
+      }
+      timezone
+      id
+      name
+      cod
     }
   }  
 `
 
 export default function WeatherBlock () {
   const [weatherInfo, setWeatherInfo] = useState<IWeatherObj>();
-  const [location, setLocation] = useState<coord>();
+  const [location, setLocation] = useState<Coord>();
   const {data} = useQuery(weatherQuery,{
     variables: {
-      latitude : tokyoCoord.latitude,
-      longitude: tokyoCoord.longitude
+      coord : location
     }
   })
 
   console.log(location,"로케이션정보.")
   console.log(data,"???")
-  
 
 
   useEffect(() => {

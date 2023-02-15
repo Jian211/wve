@@ -15,12 +15,11 @@ export const resolvers = {
     },
 
     getWeatherInfo: async (parent, args, contextValue, info) => {
-      console.log(parent,"parent?")
-      console.log(args,"args")
-      console.log(contextValue,"contextValue")
-      console.log(info,"info")
-      return args
+      console.log(args)
+      const { latitude, longitude } = args.coord;
+      const weatherInfo = await getWeatherInfo({latitude,longitude});
+      return weatherInfo
     }
-
+    
   },
 }
