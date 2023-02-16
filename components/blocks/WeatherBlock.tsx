@@ -2,9 +2,10 @@ import React, {  useEffect, useState } from 'react'
 import styled from 'styled-components'
 import ImageAtom from '../atoms/ImageAtom';
 import cloud from '../../public/images/weathers/cloud.png'
-import { Coord, getWeatherInfo, IWeatherObj } from '@/pages/api/weatherAPI';
+import { Coord,IWeatherObj } from '@/pages/api/weatherAPI';
 import BoxAtom from '../atoms/BoxAtom';
-import { useQuery,gql } from '@apollo/client';
+import { gql, useLazyQuery } from '@apollo/client';
+
 
 const Wrapper = styled.div`
     position: relative;
@@ -63,54 +64,49 @@ const weatherQuery = gql`
 `
 
 export default function WeatherBlock () {
-  const [weatherInfo, setWeatherInfo] = useState<IWeatherObj>();
   const [location, setLocation] = useState<Coord>();
-  const {data} = useQuery(weatherQuery,{
-    variables: {
-      coord : location
+  const [getCoord,{ data: weather, loading, error}] = useLazyQuery<IWeatherObj>(weatherQuery);
+  console.log("렌더링 확인", weather,"가 있습니까")
+
+  /**　ユーザーのロケーションの情報取得  
+   * 基本は東京
+  */
+ useEffect(() => {
+   if('geolocation' in navigator){
+     navigator.geolocation.getCurrentPosition((pos) => {
+       setLocation(pos.coords)
+      })
+    }else {
+      setLocation(tokyoCoord)
     }
-  })
-
-  console.log(location,"로케이션정보.")
-  console.log(data,"???")
-
-
-  useEffect(() => {
-    if('geolocation' in navigator){
-        navigator.geolocation.getCurrentPosition((pos) => {
-          setLocation(pos.coords)
-        })
-      } else {
-        setLocation(tokyoCoord)
-      }
   },[])
-
-  useEffect(() => {
+  
+  /** 設定されたロケーションを通じて天気情報取得 
+  */
+  useEffect(()=>{
     if(location){
-      (async function (){
-        setWeatherInfo(await getWeatherInfo(location))
-      })()
+      getCoord({
+        variables: {
+          coord : {
+            latitude : location.latitude,
+            longitude : location.longitude
+          }
+        }
+      })
     }
-  },[location])
-
+  },[getCoord,location])
+  
   return (
     <BoxAtom boxType='small' >
-      <Wrapper> 
-        {!weatherInfo ? 
-          <>
-            <h2>로딩중,,,</h2>
-          </> : 
-          <>
-            <ImageAtom
-              alt='cloud'
-              src={cloud}
-            />
-            <h2>{weatherInfo.weather[0].main}</h2>
-            <h2>{weatherInfo.main.temp}</h2>
-            <h2>{weatherInfo.name}</h2>
-          </>
+      {weather?.base}
+      {/* <Wrapper> 
+        { !weather ? <>loading</> :
+        <>
+          <ImageAtom alt='cloud' src={cloud} />
+          <h2>{weather.base}았는겨 업는겨?</h2>
+        </>
         }
-      </Wrapper>
+      </Wrapper> */}
     </BoxAtom>
   )
 }
