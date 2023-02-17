@@ -98,15 +98,14 @@ export default function WeatherBlock () {
   
   return (
     <BoxAtom boxType='small' >
-      {weather?.base}
-      {/* <Wrapper> 
+      <Wrapper> 
         { !weather ? <>loading</> :
         <>
           <ImageAtom alt='cloud' src={cloud} />
           <h2>{weather.base}았는겨 업는겨?</h2>
         </>
         }
-      </Wrapper> */}
+      </Wrapper>
     </BoxAtom>
   )
 }

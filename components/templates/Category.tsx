@@ -1,4 +1,5 @@
-import React from 'react'
+import { useRouter } from 'next/router';
+import React, { MouseEventHandler } from 'react'
 import styled from 'styled-components';
 import { BubbleAtom } from '../atoms/BubbleAtom';
 
@@ -8,47 +9,51 @@ const Wrapper = styled.ul`
   height: fit-content;
   width: 100%;
   padding: 1em 0;
+  
+  li {
+    cursor: pointer;
+  }
 `;
 
 
 const serviceCategory = [
     { 
-      url:"",
+      category:"all",
       language: {
         kr: "전체", 
         ja: "すべて"  
       }
     },
     { 
-      url:"daily",
+      category:"daily",
       language: {
         kr: "일상",
         ja: "日常"  
       }
     },
     { 
-      url:"travel",
+      category:"travel",
       language: {
         kr: "여행", 
         ja: "旅行"  
       }
     },
     { 
-      url:"food",
+      category:"food",
       language: {
         kr: "맛집", 
         ja: "グルメ"  
       }
     },
     { 
-      url:"festival",
+      category:"festival",
       language: {
         kr: "축제", 
         ja: "祭り"  
       }
     },
     { 
-      url:"stay",
+      category:"stay",
       language: {
         kr: "료칸", 
         ja: "旅館"  
@@ -57,16 +62,24 @@ const serviceCategory = [
 ]
 
 
-export const Category = ({ currentCtg, setCtg }) => {
+export const Category = () => {
+
+  const router = useRouter();
+  const handleClick = (category:string) => () => {
+    router.push({
+      pathname: router.route,
+      query: { category }
+    })
+  }
 
   return (
     <Wrapper>
       {serviceCategory.map((ctg, index) => (
-        <BubbleAtom 
-          key={index} 
-          category={ctg}
-          setCtg
-        />
+        <BubbleAtom key={index} selected={ctg.category === router.query.category} >
+          <h4 onClick={handleClick(ctg.category)}>
+            {ctg.language.kr}
+          </h4>
+        </BubbleAtom> 
       ))}
   </Wrapper>
   )

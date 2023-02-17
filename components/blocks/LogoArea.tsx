@@ -23,7 +23,7 @@ const Wrapper = styled.div`
 `;
 
 const navPageLinks = [
-    { href: "/service", label: "서비스" },
+    { href: "/service?category=all", label: "서비스" },
     { href: "/jobs", label: "비즈니스" },
     { href: "/voice", label: "보이스룸" },
 ]

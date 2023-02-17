@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 
-const Wrapper = styled.li`
+const Wrapper = styled.li<{selected: boolean}>`
   width: 4.8em;
   height: 3em;
   border-radius: 1.5em;
@@ -9,33 +9,28 @@ const Wrapper = styled.li`
   justify-content: center;
   align-items: center;
   margin: 0 0.5em;
-  background-color: #e6e6e6;
+  
+  
+  background-color: ${props =>  (props.selected ? "black" : "#e6e6e6")};
+  color : ${props =>  (props.selected ? "white" : "black")};
 
   &:hover {
-    background-color: black;
+    background-color: #b7b7b7;
     color: white;
   }
 `;
 
-interface IBubbleAtom {
-    category: {
-        url: string,
-        language: {
-          [key : string]: string
-        }
-    }
+interface BubbleAtomProps {
+  children : React.ReactNode
+  selected : boolean
 }
 
-export const BubbleAtom = ({category}: IBubbleAtom) => {
+export const BubbleAtom = ({children, selected }: BubbleAtomProps) => {
 
     // 현재의 url의 상태에 따라서 색이 변한다.!!! 이거다
-
     return (
-      <Wrapper
-        // style={{category.url === route}}
-        onClick={()=>{console.log("hello", category.url)}}
-      >
-        {category.language["kr"]}
+      <Wrapper selected={selected}>
+        {children}
       </Wrapper>
   )
 }

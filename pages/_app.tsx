@@ -11,8 +11,7 @@ import { TitleHeaderWrap } from '@/components/templates/TitleHeaderWrap'
 
 
 const Wrapper = styled.div`
-    width: 1410px;
-    height: 100vh;
+    width: 76%;
     display : flex;
     margin: var(--margin-side);
 `;
