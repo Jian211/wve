@@ -11,14 +11,18 @@ datasource db {
 }
 
 
+// Member area
 model User {
-  id         String    @id @default(uuid())
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
-  email      String?   @unique
-  image      String?
-  role       Role      @default(USER)
-  bookmarks  Link[] 
+  user_no     String    @id @default(uuid())
+  user_name   String   
+  login_type  Int  
+}
+
+model Authentication {
+  authentication_id  Int  @id
+  user_no User
+  gether_agree
+  
 }
 
 enum Role {
