@@ -13,31 +13,38 @@ datasource db {
 
 // Member area
 model User {
-  user_no     String    @id @default(uuid())
-  user_name   String   
-  login_type  Int  
+  userId     String    @id @default(uuid())
+  userName   String   
+  loginType Int  
+  authentication Authentication?
+  profile Profile?
 }
 
 model Authentication {
-  authentication_id  Int  @id
-  user_no User
-  gether_agree
-  
+  authenticationId  String  @id @default(uuid())
+  email             String 
+  cellPhone         String  
+  userId            String  @unique 
+  user              User    @relation(fields: [userId], references: [userId])
+  getherAgree       Boolean
+  birthday          String
+  sex               Int
+  authDate          DateTime @default(now())
+
+  @@unique([email,cellPhone])
 }
 
-enum Role {
-  USER
-  ADMIN
+model Profile {
+  profileId    Int    @default(autoincrement()) @id
+  userId       String @unique
+  user         User   @relation(fields: [userId], references: [userId])
+  nickname     String 
+  imageUrl     String
+  introduction String
+  languageType Int
+  joinDate     DateTime
+  updateDate   DateTime
+
+  @@unique([userId, nickname])
 }
 
-model Link {
-  id          String   @id @default(uuid())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  title       String
-  description String
-  url         String
-  imageUrl    String
-  category    String
-  users       User[]
-}
