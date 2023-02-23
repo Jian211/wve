@@ -16,8 +16,11 @@ model User {
   userId     String    @id @default(uuid())
   userName   String   
   loginType Int  
+
   authentication Authentication?
-  profile Profile?
+  profile        Profile?
+  password       Password?
+  socialLogin    SocialLogin?
 }
 
 model Authentication {
@@ -48,3 +51,20 @@ model Profile {
   @@unique([userId, nickname])
 }
 
+// Auth
+model Password {
+  passwordId Int     @default(autoincrement()) @id
+  userId     String  @unique
+  user       User    @relation(fields: [userId], references: [userId])
+  password   String 
+  updateDate DateTime
+}
+
+model SocialLogin {
+  socialLoginId Int     @id @default(autoincrement())
+  userId        String  @unique  
+  user          User    @relation(fields: [userId], references: [userId])
+  socialCode    Int     
+  accessToken   String  
+  updateDate    DateTime
+}
