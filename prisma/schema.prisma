@@ -17,10 +17,15 @@ model User {
   userName   String   
   loginType Int  
 
+
+  // 1 : 1
   authentication Authentication?
   profile        Profile?
   password       Password?
   socialLogin    SocialLogin?
+
+  // 1 : N
+  post           Post[]
 }
 
 model Authentication {
@@ -61,10 +66,48 @@ model Password {
 }
 
 model SocialLogin {
-  socialLoginId Int     @id @default(autoincrement())
-  userId        String  @unique  
-  user          User    @relation(fields: [userId], references: [userId])
+  socialLoginId Int       @id @default(autoincrement())
+  userId        String    @unique  
+  user          User      @relation(fields: [userId], references: [userId])
   socialCode    Int     
   accessToken   String  
   updateDate    DateTime
 }
+
+// Post
+model Post {
+  postId      Int     @id   @default(autoincrement()) 
+  authorId    String  @unique
+  author      User    @relation(fields: [authorId], references: [userId])
+  createDate  DateTime
+  updateDate  DateTime
+  content     String
+  hits        Int
+
+  location     Location?                 // 1:1
+  categories   CategoriesOnPosts[]       // 1:N
+  
+}
+
+model Category {
+  categoryId    Int     @id @default(autoincrement())
+  name          String
+  posts         CategoriesOnPosts[]
+}
+
+model CategoriesOnPosts{
+  post            Post     @relation(fields: [postId], references: [postId])
+  postId          Int   
+  category        Category @relation(fields: [categoryId], references: [categoryId])
+  categoryId      Int   
+
+  @@id([postId,categoryId])
+}
+
+model Location {
+  locationId  Int     @id  @default(autoincrement())
+  postId      Int     @unique
+  post        Post    @relation(fields: [postId],references: [postId])
+  location    String
+}
+
