@@ -25,7 +25,8 @@ model User {
   socialLogin    SocialLogin?
 
   // 1 : N
-  post           Post[]
+  posts          Post[]
+  comments       Comment[]
 }
 
 model Authentication {
@@ -58,11 +59,11 @@ model Profile {
 
 // Auth
 model Password {
-  passwordId Int     @default(autoincrement()) @id
-  userId     String  @unique
-  user       User    @relation(fields: [userId], references: [userId])
+  passwordId Int      @default(autoincrement()) @id
+  userId     String   @unique
+  user       User     @relation(fields: [userId], references: [userId])
   password   String 
-  updateDate DateTime
+  updateDate DateTime @default(now())
 }
 
 model SocialLogin {
@@ -76,17 +77,33 @@ model SocialLogin {
 
 // Post
 model Post {
-  postId      Int     @id   @default(autoincrement()) 
-  authorId    String  @unique
-  author      User    @relation(fields: [authorId], references: [userId])
-  createDate  DateTime
-  updateDate  DateTime
+  postId      Int       @id   @default(autoincrement()) 
+  authorId    String    @unique
+  author      User      @relation(fields: [authorId], references: [userId])
+  createDate  DateTime  @default(now())
+  updateDate  DateTime  @default(now())
   content     String
   hits        Int
 
-  location     Location?                 // 1:1
-  categories   CategoriesOnPosts[]       // 1:N
+  location    Location?                 // 1:1
+  categories  CategoriesOnPosts[]       // 1:N
+  comments    Comment[]                 // 1:N
   
+}
+
+model Comment {
+  commentId      Int       @id @default(autoincrement())
+  depth          Int       
+  postId         Int       @unique
+  post           Post      @relation(fields: [postId], references: [postId])
+  authorId       String    @unique
+  author         User      @relation(fields: [authorId], references: [userId])
+  createDate     DateTime  @default(now())
+  updateDate     DateTime  @default(now())
+
+  childCommentId Int?
+  childComment   Comment?  @relation("childComment",fields: [childCommentId],references: [commentId])
+  comments       Comment[] @relation("childComment")
 }
 
 model Category {
