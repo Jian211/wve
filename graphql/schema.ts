@@ -4,11 +4,6 @@ import { gql } from "apollo-server-micro";
 
 export const typeDefs = gql`
 
-  type Book {
-      name: String
-      title: String
-  }
-
   # ExchangeRate Schema
   type Info {
     timestamp: Float
@@ -84,16 +79,14 @@ export const typeDefs = gql`
     cod: Int
   }
 
-  ### post ###
   type Post {
-    postId  Int
+    postId : Int
   }
 
   type Query {
     getExchangeRate: ExchangeRate
-    getBooks: [Book]
     getWeatherInfo(coord: ICoord ): WeatherInfo
-    getPost
+    getPost: Post
   }
 
 `;

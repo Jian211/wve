@@ -8,10 +8,15 @@ export const resolvers = {
       return result;
     },
 
-    getWeatherInfo: async (parent, args, contextValue, info) => {
-      const { latitude, longitude } = args.coord;
+    getWeatherInfo: async (_parent, _args, ctx) => {
+      const { latitude, longitude } = _args.coord;
       const weatherInfo = await getWeatherInfo({latitude,longitude});
       return weatherInfo
+    },
+
+    getPost : async (_parent, _args, ctx) => {
+      // 노션참고. 컨텍스트
+
     }
     
   },
