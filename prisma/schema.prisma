@@ -11,7 +11,7 @@ datasource db {
 }
 
 
-// Member area
+// Member
 model User {
   userId     String    @id @default(uuid())
   userName   String   
@@ -44,26 +44,26 @@ model Authentication {
 }
 
 model Profile {
-  profileId    Int    @default(autoincrement()) @id
-  userId       String @unique
-  user         User   @relation(fields: [userId], references: [userId])
+  profileId    Int       @default(autoincrement()) @id
+  userId       String    @unique
+  user         User      @relation(fields: [userId], references: [userId])
   nickname     String 
   imageUrl     String
   introduction String
   languageType Int
-  joinDate     DateTime
-  updateDate   DateTime
+  joinDate     DateTime  @default(now())
+  updateDate   DateTime  @default(now())
 
   @@unique([userId, nickname])
 }
 
 // Auth
 model Password {
-  passwordId Int      @default(autoincrement()) @id
-  userId     String   @unique
-  user       User     @relation(fields: [userId], references: [userId])
+  passwordId Int        @default(autoincrement()) @id
+  userId     String     @unique
+  user       User       @relation(fields: [userId], references: [userId])
   password   String 
-  updateDate DateTime @default(now())
+  updateDate DateTime   @default(now())
 }
 
 model SocialLogin {
@@ -83,7 +83,7 @@ model Post {
   createDate  DateTime  @default(now())
   updateDate  DateTime  @default(now())
   content     String
-  hits        Int
+  hits        Int       @default(0)
 
   location    Location?                 // 1:1
   categories  CategoriesOnPosts[]       // 1:N

@@ -84,11 +84,18 @@ export const typeDefs = gql`
     cod: Int
   }
 
+  ### post ###
+  type Post {
+    postId  Int
+  }
+
   type Query {
     getExchangeRate: ExchangeRate
     getBooks: [Book]
     getWeatherInfo(coord: ICoord ): WeatherInfo
+    getPost
   }
+
 `;
   
   
