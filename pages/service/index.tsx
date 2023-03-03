@@ -1,4 +1,5 @@
 import { Category } from '@/components/templates/Category';
+import { gql, useQuery } from '@apollo/client';
 import React  from 'react'
 import styled from 'styled-components'
 
@@ -21,7 +22,19 @@ const PostWrapper = styled.div`
   }
 `;
 
+
+const postQuery = gql`
+  query TestQuery {
+    getPost {
+      postId
+    }
+  }
+`
+
 export default function Index() {
+  const {data,loading, error} = useQuery(postQuery);
+
+  console.log("테스트입니다.",data)
 
   return (
     <Wrapper>

@@ -3,8 +3,10 @@ import { getWeatherInfo } from "@/pages/api/weatherAPI";
 
 export const resolvers = {
   Query: {
-    getExchangeRate: async () => {
+    getExchangeRate: async (_parent, _args, ctx) => {
       const result = await getExchangeRateAPI();
+      // console.log( "ctx", ctx)
+      console.log("이것 때뮨ㅇ?")
       return result;
     },
 
@@ -14,9 +16,10 @@ export const resolvers = {
       return weatherInfo
     },
 
-    getPost : async (_parent, _args, ctx) => {
+    getPost : async (_parent, _args, context) => {
       // 노션참고. 컨텍스트
-
+      console.log("context 겟 포스트")
+      console.log(context, "??")
     }
     
   },

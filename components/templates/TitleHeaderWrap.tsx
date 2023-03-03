@@ -45,8 +45,8 @@ export function TitleHeaderWrap (){
     const router = useRouter();
     return (
         <Wrapper>
-            <h3>{links[router.pathname].title}</h3>
-            <h3>{links[router.pathname].label}</h3>
+            {/* <h3>{links[router.pathname].title}</h3>
+            <h3>{links[router.pathname].label}</h3> */}
         </Wrapper>
     )
 }
