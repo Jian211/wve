@@ -3,7 +3,6 @@ import { reset } from "styled-reset";
 
 export const GlobalStyle = createGlobalStyle`
     ${reset}
-    @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Zen+Old+Mincho:wght@400;500;600;700;900&display=swap');
     :focus {
         outline: none;
         border: none;

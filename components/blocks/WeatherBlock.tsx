@@ -71,6 +71,7 @@ export default function WeatherBlock () {
   /**　ユーザーのロケーションの情報取得  
    * 基本は東京
   */
+
  useEffect(() => {
    if('geolocation' in navigator){
      navigator.geolocation.getCurrentPosition((pos) => {

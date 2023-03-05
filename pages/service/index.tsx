@@ -24,10 +24,10 @@ const PostWrapper = styled.div`
 
 
 const postQuery = gql`
-  query TestQuery {
-    getPost {
+  {
+    getPost{
       postId
-    }
+    } 
   }
 `
 

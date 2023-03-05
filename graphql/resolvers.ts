@@ -19,7 +19,6 @@ export const resolvers = {
     getPost : async (_parent, _args, context) => {
       // 노션참고. 컨텍스트
       console.log("context 겟 포스트")
-      console.log(context, "??")
     }
     
   },
