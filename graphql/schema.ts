@@ -86,6 +86,7 @@ export const typeDefs = gql`
     hits: Int
     user: User
     likes: [User] 
+    comments : [Comment]
   }
 
   type User {
@@ -94,6 +95,11 @@ export const typeDefs = gql`
     imageUrl : String
   }
 
+  type Comment {
+    commentId : ID
+    createDate : String
+    user : User
+  }
   
   type Query {
     getExchangeRate: ExchangeRate

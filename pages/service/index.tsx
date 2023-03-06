@@ -23,18 +23,36 @@ const PostWrapper = styled.div`
 `;
 
 
-const postQuery = gql`
+const GET_ALL_POSTS = gql`
   {
     getPost{
       postId
       createDate
       content
+      user {
+        userId
+        nickname
+        imageUrl
+      }
+      likes {
+        userId
+        nickname
+        imageUrl
+      }
+      comments {
+        commentId
+        createDate
+        user {
+          userId
+          nickname
+        }
+      }
     } 
   }
 `
 
 export default function Index() {
-  const {data,loading, error} = useQuery(postQuery);
+  const {data,loading, error} = useQuery(GET_ALL_POSTS);
 
   console.log("테스트입니다.",data)
 

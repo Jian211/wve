@@ -32,7 +32,8 @@ export const post = {
             createDate: "202303032100",
             user: {
                 userId: "testuser01",
-                nickname: "정글"
+                nickname: "정글",
+                imageUrl: "img01"
             }
         },
         {
@@ -40,7 +41,8 @@ export const post = {
             createDate: "202303032100",
             user: {
                 userId: "testuser02",
-                nickname: "멜롱이"
+                nickname: "멜롱이",
+                imageUrl: "img02"
             }
         },
     ], 
