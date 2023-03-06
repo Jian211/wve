@@ -27,6 +27,8 @@ const postQuery = gql`
   {
     getPost{
       postId
+      createDate
+      content
     } 
   }
 `

@@ -80,9 +80,21 @@ export const typeDefs = gql`
   }
 
   type Post {
-    postId : Int
+    postId : ID
+    createDate : String
+    content: String
+    hits: Int
+    user: User
+    likes: [User] 
   }
 
+  type User {
+    userId : String
+    nickname : String
+    imageUrl : String
+  }
+
+  
   type Query {
     getExchangeRate: ExchangeRate
     getWeatherInfo(coord: ICoord ): WeatherInfo

@@ -1,6 +1,9 @@
 import { getExchangeRateAPI } from "@/pages/api/exchangeRatesAPI"
 import { getWeatherInfo } from "@/pages/api/weatherAPI";
 
+//test data
+import {post} from '../store/dummy';
+
 export const resolvers = {
   Query: {
     getExchangeRate: async (_parent, _args, ctx) => {
@@ -18,8 +21,10 @@ export const resolvers = {
 
     getPost : async (_parent, _args, context) => {
       // 노션참고. 컨텍스트
-      console.log("context 겟 포스트")
+      console.log("get Post")
+      return post;
     }
+    
     
   },
 }
