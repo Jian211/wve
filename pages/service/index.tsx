@@ -1,5 +1,6 @@
 import { Category } from '@/components/templates/Category';
 import { gql, useQuery } from '@apollo/client';
+import Image from 'next/image';
 import React  from 'react'
 import styled from 'styled-components'
 
@@ -16,12 +17,28 @@ const PostWrapper = styled.div`
   display: flex;
   height: 540px;
 
-  div:first-child {
-    width: 70%;
-    background-color: pink;
+  section:first-child {
+    aspect-ratio: 16/9;
+    background-color: #373737;
   }
 `;
 
+
+const Post_user_article = styled.article`
+  border: 1px solid red;
+  display: flex;
+  justify-content: space-between;
+
+  div:first-child {
+    display: flex;
+
+    div:first-child {
+      width: 40px;
+      height: 40px;
+      background-color: pink;
+    }
+  }
+`
 
 const GET_ALL_POSTS = gql`
   {
@@ -60,23 +77,28 @@ export default function Index() {
     <Wrapper>
       <Category />
       <PostWrapper>
-        <div>사진들.../ 순번확인가능한 표지</div>
-        <div>
-          <div>프로필사진</div>
-          <div>유저이름</div>
-          <div>... /저장, qr코드,링크, 공유</div>
-          <div>좋아요, 댓글, 공유, 스크랩, 좋아요 갯수, 게시글 내용 + 더보기 버튼(너무길때), 해시태그, 몇시간전 내용인지</div>
-        </div>
+        <section>사진들...</section>
+        <section>
+          <Post_user_article>
+            <div>
+              <div>이미지</div>
+              <div>
+                <article>Jian</article>
+                <div>tokyo city in sinjuku</div>
+              </div>
+            </div>
+            <div>...</div>
+          </Post_user_article>
+          <article>
+            <div>게시글</div>
+          </article>
+          <article>
+            <div>좋아요, 댓글, 공유, 스크랩, 좋아요 갯수, 게시글 내용 + 더보기 버튼(너무길때), 해시태그, 몇시간전 내용인지</div>
+          </article>
+
+        </section>
       </PostWrapper>
-      <PostWrapper>
-        <div>사진들.../ 순번확인가능한 표지</div>
-        <div>
-          <div>프로필사진</div>
-          <div>유저이름</div>
-          <div>... /저장, qr코드,링크, 공유</div>
-          <div>좋아요, 댓글, 공유, 스크랩, 좋아요 갯수, 게시글 내용 + 더보기 버튼(너무길때), 해시태그, 몇시간전 내용인지</div>
-        </div>
-      </PostWrapper>
+     
     </Wrapper>
   )
 }
