@@ -84,9 +84,11 @@ export const typeDefs = gql`
     createDate : String
     content: String
     hits: Int
-    user: User
+    author: User
     likes: [User] 
     comments : [Comment]
+    location : String
+    category : [String]
   }
 
   type User {
@@ -98,13 +100,13 @@ export const typeDefs = gql`
   type Comment {
     commentId : ID
     createDate : String
-    user : User
+    author : User
   }
   
   type Query {
     getExchangeRate: ExchangeRate
     getWeatherInfo(coord: ICoord ): WeatherInfo
-    getPost: Post
+    allPosts : [Post]
   }
 
 `;
